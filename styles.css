@@ -65,9 +65,37 @@ h6 {
   isolation: isolate;
 }
 
-/* CUSTOM STYLES */
+/* SETUP */
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+/* GENERAL STYLES */
+
+html,
+body {
+  height: 100%;
+}
+
+body > *:first-child.main-container {
+  height: 100vh;
+}
 
 body {
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  padding: 0 5vw;
+}
+
+/* SPECIFIC STYLES */
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
