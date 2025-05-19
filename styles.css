@@ -91,22 +91,40 @@ body > *:first-child.main-container {
 body {
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #eeeeee;
+  color: #222222;
 }
 
 .icon {
-  width: 1.6em;
-  height: 1.6em;
+  width: 1.5em;
+  height: 1.5em;
   margin: 0 auto;
+  fill: #222222;
+  opacity: 0.625;
+  cursor: pointer;
+}
+
+.icon.check-icon,
+.icon.uncheck-icon {
+  width: 1.25em;
+  height: 1.25em;
 }
 
 .button {
   padding: 0.2em 0.8em;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .button.button-fill {
   border: 1px solid black;
   background-color: inherit;
+  font-weight: 400;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.125);
+  margin: 0.125px;
 }
 
 .table td:nth-child(1),
@@ -142,6 +160,29 @@ body {
   margin: 1.6rem 0 2.4rem 0;
 }
 
+.main-header .primary-heading {
+  font-size: 2.8rem;
+}
+
 .main-content .table {
   width: 100%;
+  border-collapse: collapse;
+}
+
+.table .table-header {
+  background-color: aqua;
+}
+
+.table .table-heading,
+.table .table-data {
+  border: 1px solid black;
+  padding: 0.4rem 1.2rem;
+}
+
+.table .table-heading {
+  font-weight: 600;
+}
+
+.table .table-data {
+  font-weight: 400;
 }
