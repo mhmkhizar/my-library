@@ -99,6 +99,16 @@ body {
   margin: 0 auto;
 }
 
+.button {
+  padding: 0.2em 0.8em;
+  border-radius: 5px;
+}
+
+.button.button-fill {
+  border: 1px solid black;
+  background-color: inherit;
+}
+
 .table td:nth-child(1),
 .table th:nth-child(1) {
   text-align: left;
