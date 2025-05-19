@@ -15,7 +15,85 @@
           Add Book
         </button>
       </header>
-      <main class="main-content"></main>
+      <main class="main-content">
+        <table class="table">
+          <thead class="table-header">
+            <tr class="table-row">
+              <th class="table-heading" scope="col">No.</th>
+              <th class="table-heading" scope="col">Title</th>
+              <th class="table-heading" scope="col">Author</th>
+              <th class="table-heading" scope="col">Pages</th>
+              <th class="table-heading" scope="col">Read Status</th>
+              <th class="table-heading" scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody class="table-body">
+            <tr class="table-row">
+              <td class="table-data">01</td>
+              <td class="table-data">The Stranger</td>
+              <td class="table-data">Albert Camus</td>
+              <td class="table-data">720</td>
+              <td class="table-data">
+                <input class="read-status" type="checkbox" name="readStatus" />
+              </td>
+              <td class="table-data">
+                <svg
+                  class="icon delete-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <title>trash-can-outline</title>
+                  <path
+                    d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
+                  />
+                </svg>
+              </td>
+            </tr>
+            <tr class="table-row">
+              <td class="table-data">02</td>
+              <td class="table-data">1984</td>
+              <td class="table-data">George Orwell</td>
+              <td class="table-data">304</td>
+              <td class="table-data">
+                <input class="read-status" type="checkbox" name="readStatus" />
+              </td>
+              <td class="table-data">
+                <svg
+                  class="icon delete-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <title>trash-can-outline</title>
+                  <path
+                    d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
+                  />
+                </svg>
+              </td>
+            </tr>
+            <tr class="table-row">
+              <td class="table-data">03</td>
+              <td class="table-data">Sapiens</td>
+              <td class="table-data">Yuval Noah Harari</td>
+              <td class="table-data">144</td>
+              <td class="table-data">
+                <input class="read-status" type="checkbox" name="readStatus" />
+              </td>
+              <td class="table-data">
+                <svg
+                  class="icon delete-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <title>trash-can-outline</title>
+                  <path
+                    d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
+                  />
+                </svg>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
     </div>
   </body>
 </html>
