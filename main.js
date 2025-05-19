@@ -22,6 +22,23 @@ const myLibrary = [
   },
 ];
 
+const tableBody = document.querySelector("#tableBody");
+
+function displayBook() {
+  myLibrary.forEach((book, index) => {
+    const tableRow = document.createElement("tr");
+    tableRow.classList.add("table-row");
+    const tableCell = document.createElement("td");
+    tableCell.classList.add("table-data");
+
+    tableCell.textContent = `0${index + 1}`;
+    tableRow.appendChild(tableCell);
+    tableBody.appendChild(tableRow);
+  });
+}
+
+displayBook();
+
 function Book(title, author, pages, readStatus) {
   if (!new.target) {
     throw Error`You must use the 'new' operator to call the constructor.`;
