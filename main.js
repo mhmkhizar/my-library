@@ -30,6 +30,10 @@ function displayBooks() {
     const title = generateTableCell(book.title, `table-data`);
     const author = generateTableCell(book.author, `table-data`);
     const pages = generateTableCell(book.pages, `table-data`);
+
+    // for (let prop in book) {
+    //   generateTableCell();
+    // }
     // const readStatus = generateTableCell(book.title, `table-data`);
     // const deleteBtn = generateTableCell(book.title, `table-data`);
     row.append(serial, title, author, pages);
