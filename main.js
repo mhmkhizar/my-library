@@ -57,14 +57,7 @@ displayBooks();
 
 function displayBooks() {
   myLibrary.forEach((book, index) => {
-    const row = document.createElement("tr");
-    row.classList.add(`table-row`);
-
-    const serialCell = generateTableCell(`0${index + 1}`);
-    const bookPropCells = generateBookPropCells(book);
-    const deleteIconCell = generateTableCell(deleteIconSVG);
-
-    row.append(serialCell, ...bookPropCells, deleteIconCell);
+    const row = generateTableRow(`0${index + 1}`, book, deleteIconSVG);
     tableBody.appendChild(row);
   });
 }
@@ -103,6 +96,18 @@ function generateTableCell(content) {
 
   cell.classList.add(`table-data`);
   return cell;
+}
+
+function generateTableRow(serial, bookProps, deleteIconSVG) {
+  const row = document.createElement("tr");
+  row.classList.add(`table-row`);
+
+  const serialCell = generateTableCell(serial);
+  const bookPropCells = generateBookPropCells(bookProps);
+  const deleteIconCell = generateTableCell(deleteIconSVG);
+
+  row.append(serialCell, ...bookPropCells, deleteIconCell);
+  return row;
 }
 
 // function Book(title, author, pages, readStatus) {
