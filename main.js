@@ -61,29 +61,35 @@ function displayBooks() {
     row.classList.add(`table-row`);
 
     const serialCell = generateTableCell(`0${index + 1}`);
-    const bookPropCells = [];
-
-    for (let prop in book) {
-      if (prop === `id`) continue;
-
-      let cell;
-      if (!(prop === `readStatus`)) {
-        cell = generateTableCell(book[prop]);
-      } else {
-        cell =
-          book[prop] === true
-            ? generateTableCell(checkIconSVG)
-            : generateTableCell(uncheckIconSVG);
-      }
-
-      bookPropCells.push(cell);
-    }
-
+    const bookPropCells = generateBookPropCells(book);
     const deleteIconCell = generateTableCell(deleteIconSVG);
 
     row.append(serialCell, ...bookPropCells, deleteIconCell);
     tableBody.appendChild(row);
   });
+}
+
+function generateBookPropCells(bookObj) {
+  const cells = [];
+
+  for (let prop in bookObj) {
+    if (prop === `id`) continue;
+
+    let cell;
+
+    if (!(prop === `readStatus`)) {
+      cell = generateTableCell(bookObj[prop]);
+    } else {
+      cell =
+        bookObj[prop] === true
+          ? generateTableCell(checkIconSVG)
+          : generateTableCell(uncheckIconSVG);
+    }
+
+    cells.push(cell);
+  }
+
+  return cells;
 }
 
 function generateTableCell(content) {
