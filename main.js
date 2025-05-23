@@ -4,21 +4,21 @@ const myLibrary = [
     author: `Albert Camus`,
     pages: 720,
     readStatus: false,
-    id: 453,
+    id: crypto.randomUUID(),
   },
   {
     title: `1984`,
     author: `George Orwell`,
     pages: 304,
     readStatus: true,
-    id: 232,
+    id: crypto.randomUUID(),
   },
   {
     title: `Sapiens`,
     author: `Yuval Noah Harari`,
     pages: 144,
     readStatus: false,
-    id: 293,
+    id: crypto.randomUUID(),
   },
 ];
 
