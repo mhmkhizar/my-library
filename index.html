@@ -11,7 +11,7 @@
     <div class="main-container">
       <header class="main-header">
         <h1 class="primary-heading logo">My Library</h1>
-        <button class="button button-fill" id="addButton" type="button">
+        <button class="button button-outline" id="addButton" type="button">
           Add Book
         </button>
       </header>
@@ -30,6 +30,47 @@
           <tbody class="table-body" id="tableBody"></tbody>
         </table>
       </main>
+      <aside class="aside">
+        <dialog
+          class="dialog modal-dialog add-book-dialog"
+          aria-labelledby="dialogTitle"
+        >
+          <h2 class="heading secondary-heading dialog-heading">Add a Book</h2>
+          <form class="form dialog-form" method="dialog">
+            <div class="control-group">
+              <label for="bookTitle">Title:</label>
+              <input type="text" name="bookTitle" id="bookTitle" required />
+            </div>
+            <div class="control-group">
+              <label for="bookAuthor">Author:</label>
+              <input type="text" name="bookAuthor" id="bookAuthor" required />
+            </div>
+            <div class="control-group">
+              <label for="bookPageCount">Pages:</label>
+              <input
+                type="number"
+                name="bookPageCount"
+                id="bookPageCount"
+                required
+              />
+            </div>
+            <div class="control-group">
+              <label for="bookReadStatus">Have you read it?</label>
+              <input
+                type="checkbox"
+                name="bookReadStatus"
+                id="bookReadStatus"
+              />
+            </div>
+            <div class="button-group">
+              <button class="button button-basic" type="button">Close</button>
+              <button class="button button-outline" type="button">
+                Add Book
+              </button>
+            </div>
+          </form>
+        </dialog>
+      </aside>
     </div>
   </body>
 </html>
