@@ -116,7 +116,7 @@ body {
   cursor: pointer;
 }
 
-.button.button-basic {
+.button.button-text {
   border: none;
   background-color: inherit;
 }
