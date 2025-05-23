@@ -116,7 +116,12 @@ body {
   cursor: pointer;
 }
 
-.button.button-fill {
+.button.button-basic {
+  border: none;
+  background-color: inherit;
+}
+
+.button.button-outline {
   border: 1px solid black;
   background-color: inherit;
   font-weight: 400;
