@@ -73,8 +73,23 @@ function createCell(content, isHTML = false) {
   return cell;
 }
 
-showModalBtn.addEventListener(`click`, (e) => {
-  addBookModal.showModal();
+window.addEventListener(`click`, (e) => {
+  const btnIds = [`showModalBtn`, `closeModalBtn`, `addModalBtn`];
+  if (!btnIds.includes(e.target.id)) return;
+
+  const btnId = e.target.id;
+
+  switch (btnId) {
+    case `showModalBtn`:
+      addBookModal.showModal();
+      break;
+    case `closeModalBtn`:
+      addBookModal.close();
+      console.log(addBookModal.returnValue);
+    default:
+      console.log(`Error!`);
+      break;
+  }
 });
 
 renderLibrary(myLibrary);
