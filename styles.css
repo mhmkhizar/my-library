@@ -221,10 +221,6 @@ input[type="checkbox"] {
   padding: 2.8rem;
 }
 
-.aside .modal-dialog::backdrop {
-  background: rgba(0, 0, 0, 1);
-}
-
 .modal-dialog .form {
   margin-top: 1.6rem;
 }
