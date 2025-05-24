@@ -23,6 +23,8 @@ const myLibrary = [
 ];
 
 const tableBody = document.querySelector(`#tableBody`);
+const showModalBtn = document.querySelector(`#showModalBtn`);
+const addBookModal = document.querySelector(`#addBookModal`);
 
 const ICONS = {
   check: `<svg class="icon check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -70,6 +72,10 @@ function createCell(content, isHTML = false) {
   isHTML ? (cell.innerHTML = content) : (cell.textContent = content);
   return cell;
 }
+
+showModalBtn.addEventListener(`click`, (e) => {
+  addBookModal.showModal();
+});
 
 renderLibrary(myLibrary);
 
