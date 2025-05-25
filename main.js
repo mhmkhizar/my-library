@@ -37,7 +37,7 @@ closeModalBtn.addEventListener(`click`, (e) => {
 });
 
 addModalBtn.addEventListener(`click`, (e) => {
-  if (!titleInp.value || !authorInp.value || !pageCountInp.value) return;
+  if (!titleInp.value || !authorInp.value || !pagesInp.value) return;
 
   addBookToLibrary(
     titleInp.value,
