@@ -28,28 +28,41 @@ const ICONS = {
     </svg>`,
 };
 
-showModalBtn.addEventListener(`click`, (e) => {
+showModalBtn.addEventListener(`click`, openModal);
+closeModalBtn.addEventListener(`click`, closeModal);
+addModalBtn.addEventListener(`click`, handleAddBook);
+
+function openModal() {
   addBookModal.showModal();
-});
+}
 
-closeModalBtn.addEventListener(`click`, (e) => {
+function closeModal() {
   addBookModal.close();
-});
+  modalForm.reset();
+}
 
-addModalBtn.addEventListener(`click`, (e) => {
+function handleAddBook(e) {
   if (!titleInp.value || !authorInp.value || !pagesInp.value) return;
 
   addBookToLibrary(
     titleInp.value,
     authorInp.value,
     pagesInp.value,
-    readStatInp.value
+    readStatInp.checked
   );
-  renderLibrary(myLibrary);
+
   e.preventDefault();
   addBookModal.close();
   modalForm.reset();
-});
+
+  updateDisplay();
+}
+
+function updateDisplay() {
+  const newBook = myLibrary[myLibrary.length - 1];
+  const newRow = createTableRow(myLibrary.length, newBook);
+  tableBody.appendChild(newRow);
+}
 
 function Book(title, author, pages, readStatus) {
   if (!new.target) {
@@ -67,14 +80,6 @@ function addBookToLibrary(title, author, pages, readStatus) {
   if (!title || !author || !pages) return;
   const book = new Book(title, author, pages, readStatus);
   myLibrary.push(book);
-}
-
-function renderLibrary(library) {
-  tableBody.innerHTML = ``;
-  library.forEach((book, index) => {
-    const row = createTableRow(index + 1, book);
-    tableBody.appendChild(row);
-  });
 }
 
 function createTableRow(serial, book) {
