@@ -8,10 +8,10 @@ const closeModalBtn = addBookModal.querySelector(`#closeModalBtn`);
 const addModalBtn = addBookModal.querySelector(`#addModalBtn`);
 const modalForm = addBookModal.querySelector(`.form`);
 
-const titleInput = modalForm.querySelector(`#bookTitle`);
-const authorInput = modalForm.querySelector(`#bookAuthor`);
-const pageCountInput = modalForm.querySelector(`#bookPageCount`);
-const readStatusInput = modalForm.querySelector(`#bookReadStatus`);
+const titleInp = modalForm.querySelector(`#bookTitle`);
+const authorInp = modalForm.querySelector(`#bookAuthor`);
+const pagesInp = modalForm.querySelector(`#bookPageCount`);
+const readStatInp = modalForm.querySelector(`#bookReadStatus`);
 
 const ICONS = {
   check: `<svg class="icon check-icon" id="checkIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -40,10 +40,10 @@ addModalBtn.addEventListener(`click`, (e) => {
   if (!titleInput.value || !authorInput.value || !pageCountInput.value) return;
 
   addBookToLibrary(
-    titleInput.value,
-    authorInput.value,
-    pageCountInput.value,
-    readStatusInput.value
+    titleInp.value,
+    authorInp.value,
+    pagesInp.value,
+    readStatInp.value
   );
   renderLibrary(myLibrary);
   e.preventDefault();
