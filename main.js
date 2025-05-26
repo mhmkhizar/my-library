@@ -31,29 +31,6 @@ const ICONS = {
 showModalBtn.addEventListener(`click`, openModal);
 closeModalBtn.addEventListener(`click`, closeModal);
 addModalBtn.addEventListener(`click`, handleAddBook);
-tableBody.addEventListener(`click`, handleBookManipulation);
-
-function handleBookManipulation(e) {
-  const iconIds = [`checkIcon`, `uncheckIcon`, `deleteIcon`];
-  if (!iconIds.includes(e.target.id)) return;
-
-  const iconRow = e.target.parentElement.parentElement;
-  const iconCell = e.target.parentElement;
-
-  if (e.target.id === `deleteIcon`) {
-    iconRow.remove();
-    myLibrary = myLibrary.filter((book) => book.id !== iconRow.dataset.bookId);
-  } else {
-    const book = myLibrary.find((book) => book.id === iconRow.dataset.bookId);
-
-    if (book) {
-      book.toggleReadStatus();
-      e.target.remove();
-      iconCell.innerHTML = book.readStatus ? ICONS.check : ICONS.uncheck;
-      console.log(book.readStatus);
-    }
-  }
-}
 
 function handleAddBook(e) {
   if (!titleInp.value || !authorInp.value || !pagesInp.value) return;
