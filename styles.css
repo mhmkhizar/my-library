@@ -65,6 +65,10 @@ h6 {
   isolation: isolate;
 }
 
+svg path {
+  pointer-events: auto;
+}
+
 /* SETUP */
 
 html {
