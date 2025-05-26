@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 const tableBody = document.querySelector(`#tableBody`);
 const showModalBtn = document.querySelector(`#showModalBtn`);
@@ -31,6 +31,29 @@ const ICONS = {
 showModalBtn.addEventListener(`click`, openModal);
 closeModalBtn.addEventListener(`click`, closeModal);
 addModalBtn.addEventListener(`click`, handleAddBook);
+tableBody.addEventListener(`click`, handleBookManipulation);
+
+function handleBookManipulation(e) {
+  const iconIds = [`checkIcon`, `uncheckIcon`, `deleteIcon`];
+  if (!iconIds.includes(e.target.id)) return;
+
+  const iconRow = e.target.parentElement.parentElement;
+  const iconCell = e.target.parentElement;
+
+  if (e.target.id === `deleteIcon`) {
+    iconRow.remove();
+    myLibrary = myLibrary.filter((book) => book.id !== iconRow.dataset.bookId);
+  } else {
+    const book = myLibrary.find((book) => book.id === iconRow.dataset.bookId);
+
+    if (book) {
+      book.toggleReadStatus();
+      e.target.remove();
+      iconCell.innerHTML = book.readStatus ? ICONS.check : ICONS.uncheck;
+      console.log(book.readStatus);
+    }
+  }
+}
 
 function handleAddBook(e) {
   if (!titleInp.value || !authorInp.value || !pagesInp.value) return;
@@ -41,10 +64,9 @@ function handleAddBook(e) {
     pagesInp.value,
     readStatInp.checked
   );
-
   e.preventDefault();
   closeModal();
-  updateDisplay();
+  displayBookRow();
 }
 
 function openModal() {
@@ -56,7 +78,7 @@ function closeModal() {
   modalForm.reset();
 }
 
-function updateDisplay() {
+function displayBookRow() {
   const newBook = myLibrary[myLibrary.length - 1];
   const newRow = createTableRow(myLibrary.length, newBook);
   tableBody.appendChild(newRow);
@@ -74,6 +96,10 @@ function Book(title, author, pages, readStatus) {
   this.id = crypto.randomUUID();
 }
 
+Book.prototype.toggleReadStatus = function () {
+  this.readStatus = !this.readStatus;
+};
+
 function addBookToLibrary(title, author, pages, readStatus) {
   if (!title || !author || !pages) return;
   const book = new Book(title, author, pages, readStatus);
@@ -83,6 +109,7 @@ function addBookToLibrary(title, author, pages, readStatus) {
 function createTableRow(serial, book) {
   const row = document.createElement(`tr`);
   row.classList.add(`table-row`);
+  row.setAttribute(`data-book-id`, book.id);
 
   const cells = [
     createCell(String(serial).padStart(2, 0)),
