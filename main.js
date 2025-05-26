@@ -32,15 +32,6 @@ showModalBtn.addEventListener(`click`, openModal);
 closeModalBtn.addEventListener(`click`, closeModal);
 addModalBtn.addEventListener(`click`, handleAddBook);
 
-function openModal() {
-  addBookModal.showModal();
-}
-
-function closeModal() {
-  addBookModal.close();
-  modalForm.reset();
-}
-
 function handleAddBook(e) {
   if (!titleInp.value || !authorInp.value || !pagesInp.value) return;
 
@@ -52,10 +43,17 @@ function handleAddBook(e) {
   );
 
   e.preventDefault();
+  closeModal();
+  updateDisplay();
+}
+
+function openModal() {
+  addBookModal.showModal();
+}
+
+function closeModal() {
   addBookModal.close();
   modalForm.reset();
-
-  updateDisplay();
 }
 
 function updateDisplay() {
