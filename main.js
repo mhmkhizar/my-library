@@ -1,4 +1,4 @@
-let myLibrary = [];
+const myLibrary = [];
 
 const tableBody = document.querySelector(`#tableBody`);
 const showModalBtn = document.querySelector(`#showModalBtn`);
@@ -56,6 +56,7 @@ function handleBookManipulation(e) {
 
 function handleAddBook(e) {
   if (!titleInp.value || !authorInp.value || !pagesInp.value) return;
+  e.preventDefault();
 
   addBookToLibrary(
     titleInp.value,
@@ -63,7 +64,6 @@ function handleAddBook(e) {
     pagesInp.value,
     readStatInp.checked
   );
-  e.preventDefault();
   closeModal();
   displayBookRow();
 }
@@ -79,7 +79,7 @@ function closeModal() {
 
 function displayBookRow() {
   const newBook = myLibrary[myLibrary.length - 1];
-  const newRow = createTableRow(myLibrary.length, newBook);
+  const newRow = createRow(myLibrary.length, newBook);
   tableBody.appendChild(newRow);
 }
 
@@ -105,7 +105,7 @@ function addBookToLibrary(title, author, pages, readStatus) {
   myLibrary.push(book);
 }
 
-function createTableRow(serial, book) {
+function createRow(serial, book) {
   const row = document.createElement(`tr`);
   row.classList.add(`table-row`);
   row.setAttribute(`data-book-id`, book.id);
