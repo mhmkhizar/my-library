@@ -8,10 +8,10 @@ const closeModalBtn = addBookModal.querySelector(`#closeModalBtn`);
 const addModalBtn = addBookModal.querySelector(`#addModalBtn`);
 const modalForm = addBookModal.querySelector(`.form`);
 
-const titleInp = modalForm.querySelector(`#bookTitle`);
-const authorInp = modalForm.querySelector(`#bookAuthor`);
-const pagesInp = modalForm.querySelector(`#bookPageCount`);
-const readStatInp = modalForm.querySelector(`#bookReadStatus`);
+const titleInput = modalForm.querySelector(`#bookTitle`);
+const authorInput = modalForm.querySelector(`#bookAuthor`);
+const pagesInput = modalForm.querySelector(`#bookPageCount`);
+const readStatusInput = modalForm.querySelector(`#bookReadStatus`);
 
 const ICONS = {
   check: `<svg class="icon check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ function closeModal() {
 }
 
 function handleFormSubmission(e) {
-  if (!titleInp.value || !authorInp.value || !pagesInp.value) return;
+  if (!titleInput.value || !authorInput.value || !pagesInput.value) return;
   e.preventDefault();
 
   const newBook = new Book(
@@ -49,8 +49,8 @@ function handleFormSubmission(e) {
     readStatusInput.checked
   );
   library.push(newBook);
-  renderLibrary();
   closeModal();
+  renderLibrary();
 }
 
 function handleRowAction(e) {
