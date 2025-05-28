@@ -310,6 +310,7 @@ input[type="checkbox"] {
 
 .modal-dialog .form {
   margin-top: 1.6rem;
+  width: 100%;
 }
 
 .modal-dialog .form > .control-group {
@@ -327,8 +328,8 @@ input[type="checkbox"] {
 
 .modal-dialog .form label:not(:last-of-type),
 .modal-dialog .form input:not(input[type="checkbox"]) {
-  display: inline-block;
-  width: 100%;
+  display: block;
+  width: clamp(250px, 30vw, 300px);
 }
 
 .modal-dialog .form input:not(input[type="checkbox"]) {
