@@ -45,7 +45,7 @@ function handleBookManipulation(e) {
 
   if (icon.classList.contains(`delete-icon`) && index !== -1) {
     myLibrary.splice(index, 1);
-    iconRow.remove();
+    renderLibrary();
   } else {
     bookToManipulate.toggleReadStatus();
     iconCell.innerHTML = bookToManipulate.readStatus
@@ -65,7 +65,7 @@ function handleAddBook(e) {
     readStatInp.checked
   );
   closeModal();
-  displayBookRow();
+  renderLibrary();
 }
 
 function openModal() {
@@ -77,10 +77,12 @@ function closeModal() {
   modalForm.reset();
 }
 
-function displayBookRow() {
-  const newBook = myLibrary[myLibrary.length - 1];
-  const newRow = createRow(myLibrary.length, newBook);
-  tableBody.appendChild(newRow);
+function renderLibrary() {
+  tableBody.innerHTML = ``;
+  myLibrary.forEach((book, index) => {
+    const row = createRow(index + 1, book);
+    tableBody.appendChild(row);
+  });
 }
 
 function Book(title, author, pages, readStatus) {
