@@ -1,17 +1,17 @@
 const library = [];
 
+const table = document.querySelector(`#table`);
 const tableBody = document.querySelector(`#tableBody`);
 const showModalBtn = document.querySelector(`#showModalBtn`);
 const addBookModal = document.querySelector(`#addBookModal`);
-
 const closeModalBtn = addBookModal.querySelector(`#closeModalBtn`);
 const addModalBtn = addBookModal.querySelector(`#addModalBtn`);
 const modalForm = addBookModal.querySelector(`.form`);
-
 const titleInput = modalForm.querySelector(`#bookTitle`);
 const authorInput = modalForm.querySelector(`#bookAuthor`);
 const pagesInput = modalForm.querySelector(`#bookPageCount`);
 const readStatusInput = modalForm.querySelector(`#bookReadStatus`);
+const addBookBar = document.querySelector(`#addBookBar`);
 
 const ICONS = {
   check: `<svg class="icon check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -28,10 +28,15 @@ const ICONS = {
     </svg>`,
 };
 
-showModalBtn.addEventListener(`click`, (e) => addBookModal.showModal());
+showModalBtn.addEventListener(`click`, openModal);
+addBookBar.addEventListener(`click`, openModal);
 closeModalBtn.addEventListener(`click`, closeModal);
 addModalBtn.addEventListener(`click`, handleFormSubmission);
 tableBody.addEventListener(`click`, handleRowAction);
+
+function openModal() {
+  addBookModal.showModal();
+}
 
 function closeModal() {
   addBookModal.close();
@@ -49,8 +54,9 @@ function handleFormSubmission(e) {
     readStatusInput.checked
   );
   library.push(newBook);
+  renderTable();
   closeModal();
-  renderLibrary();
+  toggleDiplay([addBookBar, table], library.length < 2);
 }
 
 function handleRowAction(e) {
@@ -64,19 +70,29 @@ function handleRowAction(e) {
 
   if (icon.classList.contains(`delete-icon`) && index !== -1) {
     library.splice(index, 1);
-    renderLibrary();
+    renderTable();
+    toggleDiplay([addBookBar, table], library.length < 1);
   } else if (book) {
     book.toggleReadStatus();
-    renderLibrary();
+    renderTable();
   }
 }
 
-function renderLibrary() {
+function renderTable() {
   tableBody.innerHTML = ``;
   library.forEach((book, i) => {
     const row = createTableRow(i + 1, book);
     tableBody.appendChild(row);
   });
+}
+
+function toggleDiplay(elems, condition) {
+  if (condition)
+    elems.forEach((elem) => {
+      elem.style.display === `none`
+        ? (elem.style.display = ``)
+        : (elem.style.display = `none`);
+    });
 }
 
 function Book(title, author, pages, readStatus) {
