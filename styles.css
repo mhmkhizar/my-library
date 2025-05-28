@@ -117,6 +117,13 @@ body {
   height: 1.25em;
 }
 
+/* .icon.plus-icon {
+  width: 5em;
+  height: 5em;
+  fill: black;
+  opacity: 1;
+} */
+
 .button {
   padding: 0.2em 0.8em;
   border-radius: 5px;
@@ -193,6 +200,10 @@ input[type="checkbox"] {
 
 .main-header .primary-heading {
   font-size: 2.8rem;
+}
+
+.button.add-book-bar {
+  padding: 1.6rem 0;
 }
 
 .main-content {
