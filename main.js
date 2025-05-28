@@ -11,7 +11,7 @@ const titleInput = modalForm.querySelector(`#bookTitle`);
 const authorInput = modalForm.querySelector(`#bookAuthor`);
 const pagesInput = modalForm.querySelector(`#bookPageCount`);
 const readStatusInput = modalForm.querySelector(`#bookReadStatus`);
-const addBookBar = document.querySelector(`#addBookBar`);
+const addBookBar = document.querySelector(`#addBookBarSection`);
 
 const ICONS = {
   check: `<svg class="icon check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
