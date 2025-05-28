@@ -1,4 +1,4 @@
-const myLibrary = [];
+const library = [];
 
 const tableBody = document.querySelector(`#tableBody`);
 const showModalBtn = document.querySelector(`#showModalBtn`);
@@ -28,68 +28,59 @@ const ICONS = {
     </svg>`,
 };
 
-showModalBtn.addEventListener(`click`, openModal);
+showModalBtn.addEventListener(`click`, (e) => addBookModal.showModal());
 closeModalBtn.addEventListener(`click`, closeModal);
-addModalBtn.addEventListener(`click`, handleAddBook);
-tableBody.addEventListener(`click`, handleBookManipulation);
-
-function handleBookManipulation(e) {
-  const icon = e.target.closest(".icon");
-  if (!icon) return;
-
-  const iconCell = icon.closest(`td`);
-  const iconRow = icon.closest(`tr`);
-  const rowBookId = iconRow.dataset.bookId;
-  const bookToManipulate = myLibrary.find((book) => book.id === rowBookId);
-  const index = myLibrary.indexOf(bookToManipulate);
-
-  if (icon.classList.contains(`delete-icon`) && index !== -1) {
-    myLibrary.splice(index, 1);
-    renderLibrary();
-  } else {
-    bookToManipulate.toggleReadStatus();
-    iconCell.innerHTML = bookToManipulate.readStatus
-      ? ICONS.check
-      : ICONS.uncheck;
-  }
-}
-
-function handleAddBook(e) {
-  if (!titleInp.value || !authorInp.value || !pagesInp.value) return;
-  e.preventDefault();
-
-  addBookToLibrary(
-    titleInp.value,
-    authorInp.value,
-    pagesInp.value,
-    readStatInp.checked
-  );
-  closeModal();
-  renderLibrary();
-}
-
-function openModal() {
-  addBookModal.showModal();
-}
+addModalBtn.addEventListener(`click`, handleFormSubmission);
+tableBody.addEventListener(`click`, handleRowAction);
 
 function closeModal() {
   addBookModal.close();
   modalForm.reset();
 }
 
+function handleFormSubmission(e) {
+  if (!titleInp.value || !authorInp.value || !pagesInp.value) return;
+  e.preventDefault();
+
+  const newBook = new Book(
+    titleInput.value,
+    authorInput.value,
+    pagesInput.value,
+    readStatusInput.checked
+  );
+  library.push(newBook);
+  renderLibrary();
+  closeModal();
+}
+
+function handleRowAction(e) {
+  const icon = e.target.closest(".icon");
+  if (!icon) return;
+
+  const row = icon.closest(`tr`);
+  const bookId = row.dataset.bookId;
+  const book = library.find((b) => b.id === bookId);
+  const index = library.indexOf(book);
+
+  if (icon.classList.contains(`delete-icon`) && index !== -1) {
+    library.splice(index, 1);
+    renderLibrary();
+  } else if (book) {
+    book.toggleReadStatus();
+    renderLibrary();
+  }
+}
+
 function renderLibrary() {
   tableBody.innerHTML = ``;
-  myLibrary.forEach((book, index) => {
-    const row = createRow(index + 1, book);
+  library.forEach((book, i) => {
+    const row = createTableRow(i + 1, book);
     tableBody.appendChild(row);
   });
 }
 
 function Book(title, author, pages, readStatus) {
-  if (!new.target) {
-    throw Error`You must use the 'new' operator to call the constructor.`;
-  }
-
+  if (!new.target) throw new Error(`Use "new" to instantiate Book`);
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -101,19 +92,13 @@ Book.prototype.toggleReadStatus = function () {
   this.readStatus = !this.readStatus;
 };
 
-function addBookToLibrary(title, author, pages, readStatus) {
-  if (!title || !author || !pages) return;
-  const book = new Book(title, author, pages, readStatus);
-  myLibrary.push(book);
-}
-
-function createRow(serial, book) {
+function createTableRow(serial, book) {
   const row = document.createElement(`tr`);
   row.classList.add(`table-row`);
-  row.setAttribute(`data-book-id`, book.id);
+  row.dataset.bookId = book.id;
 
   const cells = [
-    createCell(String(serial).padStart(2, 0)),
+    createCell(serial.toString().padStart(2, "0")),
     createCell(book.title),
     createCell(book.author),
     createCell(book.pages),
