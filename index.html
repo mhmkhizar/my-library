@@ -15,8 +15,20 @@
           Add Book
         </button>
       </header>
+      <aside class="aside add-book-bar-section">
+        <div class="button button-outline add-book-bar" id="addBookBar">
+          <svg
+            class="icon plus-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <title>plus</title>
+            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+          </svg>
+        </div>
+      </aside>
       <main class="main-content">
-        <table class="table">
+        <table class="table" id="table" style="display: none">
           <thead class="table-header">
             <tr class="table-row">
               <th class="table-heading" scope="col">No.</th>
@@ -30,7 +42,7 @@
           <tbody class="table-body" id="tableBody"></tbody>
         </table>
       </main>
-      <aside class="aside">
+      <aside class="aside dialog-section">
         <dialog
           class="dialog modal-dialog add-book-dialog"
           aria-labelledby="dialogTitle"
