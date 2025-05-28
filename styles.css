@@ -1,6 +1,26 @@
-/* RESETS */
+/* COLOR VARIABLES */
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary-color: #64748b;
+  --background-color: #f8fafc;
+  --surface-color: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e1;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --heading-color: #334155;
+  --table-header-bg: #f1f5f9;
+  --shadow-light: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-large: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
 
-*,
+RESETS *,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -98,17 +118,23 @@ body > *:first-child.main-container {
 body {
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-color: #eeeeee;
-  color: #222222;
+  background-color: var(--background-color);
+  color: var(--text-primary);
 }
 
 .icon {
   width: 1.5em;
   height: 1.5em;
   margin: 0 auto;
-  fill: #222222;
-  opacity: 0.625;
+  fill: var(--text-secondary);
+  opacity: 0.8;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon:hover {
+  opacity: 1;
+  fill: var(--primary-color);
 }
 
 .icon.check-icon,
@@ -117,29 +143,47 @@ body {
   height: 1.25em;
 }
 
-/* .icon.plus-icon {
-  width: 5em;
-  height: 5em;
-  fill: black;
+.icon.check-icon {
+  fill: var(--success-color);
   opacity: 1;
-} */
+}
+
+.icon.delete-icon:hover {
+  fill: var(--danger-color);
+}
 
 .button {
   padding: 0.2em 0.8em;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .button.button-text {
   border: none;
-  background-color: inherit;
+  background-color: transparent;
   font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.button.button-text:hover {
+  color: var(--text-primary);
+  background-color: var(--table-header-bg);
 }
 
 .button.button-outline {
-  border: 1px solid black;
-  background-color: inherit;
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-color);
   font-weight: 500;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-light);
+}
+
+.button.button-outline:hover {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--surface-color);
+  box-shadow: var(--shadow-medium);
 }
 
 .button.icon-wrapper-button {
@@ -150,10 +194,11 @@ body {
 input[type="checkbox"] {
   transform: scale(1.125);
   margin: 0.125px;
+  accent-color: var(--primary-color);
 }
 
 .modal-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .modal-dialog {
@@ -200,10 +245,19 @@ input[type="checkbox"] {
 
 .main-header .primary-heading {
   font-size: 2.8rem;
+  color: var(--heading-color);
 }
 
 .button.add-book-bar {
   padding: 1.6rem 0;
+  border-color: var(--border-color);
+  background-color: var(--surface-color);
+  border-style: dashed;
+}
+
+.button.add-book-bar:hover {
+  border-color: var(--primary-color);
+  background-color: var(--table-header-bg);
 }
 
 .main-content {
@@ -214,31 +268,44 @@ input[type="checkbox"] {
 .main-content .table {
   width: 100%;
   border-collapse: collapse;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
 }
 
 .table .table-header {
-  background-color: aqua;
+  background-color: var(--table-header-bg);
 }
 
 .table .table-heading,
 .table .table-data {
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   padding: 0.4rem 1.2rem;
 }
 
 .table .table-heading {
   font-weight: 600;
+  color: var(--text-primary);
+  background-color: var(--table-header-bg);
 }
 
 .table .table-data {
   font-weight: 400;
+  color: var(--text-primary);
+  background-color: var(--surface-color);
+}
+
+.table .table-row:hover .table-data {
+  background-color: var(--table-header-bg);
 }
 
 .aside .modal-dialog {
-  border-radius: 8px;
-  background-color: #eeeeee;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-large);
   padding: 2.8rem;
+  border: 1px solid var(--border-color);
 }
 
 .modal-dialog .form {
@@ -251,6 +318,11 @@ input[type="checkbox"] {
 
 .modal-dialog .form label {
   font-weight: 500;
+  color: var(--text-primary);
+}
+
+.modal-dialog h2 {
+  color: var(--heading-color);
 }
 
 .modal-dialog .form label:not(:last-of-type),
@@ -261,12 +333,17 @@ input[type="checkbox"] {
 
 .modal-dialog .form input:not(input[type="checkbox"]) {
   padding: 0.4rem 0.8rem;
-  border: 1px solid rgba(34, 34, 34, 0.75);
-  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--surface-color);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease;
 }
 
 .modal-dialog .form input:not(input[type="checkbox"]):focus {
-  outline: 1px solid rgba(34, 34, 34, 0.75);
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .modal-dialog .form > .control-group:nth-last-of-type(2),
