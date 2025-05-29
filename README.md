@@ -78,7 +78,8 @@ function Book(title, author, pages, readStatus) {
 
 ## Browser Compatibility
 
-- This application works in all modern browsers that support:
+This application works in all modern browsers that support:
+
 - ES6+ JavaScript features
 - CSS Custom Properties (CSS Variables)
 - HTML5 Dialog element
