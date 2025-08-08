@@ -95,18 +95,24 @@ function toggleDiplay(elems, condition) {
     });
 }
 
-function Book(title, author, pages, readStatus) {
-  if (!new.target) throw new Error(`Use "new" to instantiate Book`);
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus;
-  this.id = crypto.randomUUID();
-}
+class Book {
+  #id = crypto.randomUUID();
 
-Book.prototype.toggleReadStatus = function () {
-  this.readStatus = !this.readStatus;
-};
+  constructor(title, author, pages, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+  }
+
+  get id() {
+    return this.#id;
+  }
+
+  toggleReadStatus() {
+    this.readStatus = !this.readStatus;
+  }
+}
 
 function createTableRow(serial, book) {
   const row = document.createElement(`tr`);
