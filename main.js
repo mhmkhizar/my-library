@@ -44,8 +44,26 @@ function closeModal() {
 }
 
 function handleFormSubmission(e) {
-  if (!titleInput.value || !authorInput.value || !pagesInput.value) return;
-  e.preventDefault();
+  if (!titleInput.value) {
+    titleInput.setCustomValidity(`The title must be filled.`);
+    return;
+  } else {
+    titleInput.setCustomValidity(``);
+  }
+
+  if (!authorInput.value) {
+    authorInput.setCustomValidity(`The author name must be filled.`);
+    return;
+  } else {
+    authorInput.setCustomValidity(``);
+  }
+
+  if (!pagesInput.value) {
+    pagesInput.setCustomValidity(`The page number must be filled.`);
+    return;
+  } else {
+    pagesInput.setCustomValidity(``);
+  }
 
   const newBook = new Book(
     titleInput.value,
