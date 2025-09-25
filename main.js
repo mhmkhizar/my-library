@@ -31,6 +31,9 @@ const ICONS = {
 showModalBtn.addEventListener(`click`, openModal);
 addBookBar.addEventListener(`click`, openModal);
 closeModalBtn.addEventListener(`click`, closeModal);
+titleInput.addEventListener(`input`, handleTitleInput);
+authorInput.addEventListener(`input`, handleAuthorInput);
+pagesInput.addEventListener(`input`, handlePagesInput);
 addModalBtn.addEventListener(`click`, handleFormSubmission);
 tableBody.addEventListener(`click`, handleRowAction);
 
@@ -43,26 +46,30 @@ function closeModal() {
   modalForm.reset();
 }
 
-function handleFormSubmission(e) {
-  if (!titleInput.value) {
-    titleInput.setCustomValidity(`The title must be filled.`);
-    return;
-  } else {
-    titleInput.setCustomValidity(``);
-  }
+function handleTitleInput() {
+  if (!titleInput.value)
+    titleInput.setCustomValidity(`The book title must be filled.`);
+  else titleInput.setCustomValidity(``);
+}
 
-  if (!authorInput.value) {
+function handleAuthorInput() {
+  if (!authorInput.value)
     authorInput.setCustomValidity(`The author name must be filled.`);
-    return;
-  } else {
-    authorInput.setCustomValidity(``);
-  }
+  else authorInput.setCustomValidity(``);
+}
 
-  if (!pagesInput.value) {
-    pagesInput.setCustomValidity(`The page number must be filled.`);
+function handlePagesInput() {
+  if (!pagesInput.value)
+    pagesInput.setCustomValidity(`The page count must be filled.`);
+  else pagesInput.setCustomValidity(``);
+}
+
+function handleFormSubmission(e) {
+  if (!titleInput.value || !authorInput.value || !pagesInput.value) {
+    if (!titleInput.value) handleTitleInput();
+    if (!authorInput.value) handleAuthorInput();
+    if (!pagesInput.value) handlePagesInput();
     return;
-  } else {
-    pagesInput.setCustomValidity(``);
   }
 
   const newBook = new Book(
